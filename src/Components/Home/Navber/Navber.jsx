@@ -3,9 +3,11 @@ import logoImg from "../../../assets/icons/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import userAuth from "../../AuthProvider/userAuth";
 import { FaRegUserCircle } from "react-icons/fa";
+import UseRole from "../../useRole/UseRole";
 
 const Navber = () => {
   const {user,logoOut} = userAuth()
+  const [role] = UseRole()
   // Reusable function for NavLink styling
   const navLinkClass = ({ isActive }) =>
     isActive
@@ -20,23 +22,18 @@ const Navber = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink to="/ourTeam" className={navLinkClass}>
+        Our Team
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/services" className={navLinkClass}>
-          Services
+         All Services
         </NavLink>
       </li>
       <li>
-        <NavLink to="/resources" className={navLinkClass}>
-          Resources
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/pricing" className={navLinkClass}>
-          Pricing
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/company" className={navLinkClass}>
-          Company
+        <NavLink to="/contact" className={navLinkClass}>
+        Contact Us
         </NavLink>
       </li>
     </>
@@ -129,10 +126,16 @@ const Navber = () => {
           {user?.displayName}
         </li>
         <li className="text-center">
-          <NavLink to='/profile' className={`${navLinkClass} `}>Update User Profile</NavLink>
+          <NavLink to='/updateProfile' className={`${navLinkClass} `}> User Profile</NavLink>
         </li>
         <li className="text-center mx-auto w-full flex justify-center">
-          <NavLink to='/dashboard' className={`${navLinkClass} text-center`}>Dashboard</NavLink>
+        <NavLink
+            to={role === "user" ? "/dashboard/book" : "/dashboard/orderList"}
+            className={`${navLinkClass} text-center`}
+          >
+            Dashboard
+          </NavLink>
+
         </li>
         
         <li

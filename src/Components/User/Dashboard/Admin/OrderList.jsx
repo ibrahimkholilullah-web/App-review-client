@@ -1,5 +1,6 @@
 import React from "react";
 import Order from "./Order";
+import { Link } from "react-router-dom";
 
 const OrderList = () => {
   const orders = [
@@ -22,9 +23,9 @@ const OrderList = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg">
+    <div className=" mx-auto p-8 bg-white rounded-lg">
         <div className='flex items-center justify-between font-bold'>
-                <h1>Order List</h1>
+                <h1>Order List / <Link to='/' className='text-[#F73E7B]'>Home</Link></h1>
                 <h1>Pro Rasel</h1>
             </div>
     <div className="bg-slate-50 min-h-screen p-8">

@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ReviewForm = () => {
   return (
     <div className="min-h-screen  p-6">
          <div className='flex items-center justify-between font-bold'>
-                <h1>Review</h1>
+                <h1>Review / <Link to='/' className='text-[#F73E7B]'>Home</Link></h1>
                 <h1>Pro Rasel</h1>
             </div>
      
-      <div className="bg-blue-50 min-h-screen p-10">
+      <div className="bg-blue-50 min-h-screen p-4 md:p-10">
       <div className="  rounded-lg  max-w-md ">
         <form>
           {/* Name Input */}

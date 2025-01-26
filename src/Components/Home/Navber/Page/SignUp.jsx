@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import userAuth from '../../../AuthProvider/userAuth';
 import { toast } from 'react-toastify';
 import Navber from '../Navber';
+import { saveUser } from '../../../Utilit/Utilite';
 const SignUp = () => {
     const [passwordIcon, setPassswordIcon] = useState(false)
     const {createUser,googleSignUp,updateSignleUser} = userAuth()
@@ -22,7 +23,7 @@ const SignUp = () => {
        try{
       const result = await  createUser(email, password)
       await updateSignleUser(name)
-
+        await saveUser({...result?.user, displayName:name,})
         toast.success('Successfully Create User')
         navigate('/')
        }catch (err){
@@ -31,7 +32,9 @@ const SignUp = () => {
     }
      const handleSignInGoogle =async () =>{
         try{
-          await googleSignUp()
+        const data =  await googleSignUp()
+        await saveUser(data?.user)
+        console.log(data)
           toast.success('Google SignIn User')
           navigate('/')
         }catch(err){

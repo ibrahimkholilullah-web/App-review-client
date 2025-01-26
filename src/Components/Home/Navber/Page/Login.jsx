@@ -4,6 +4,7 @@ import google from "../../../../assets/icons/Group 573.png";
 import { Link, useNavigate } from "react-router-dom";
 import userAuth from "../../../AuthProvider/userAuth";
 import { toast } from "react-toastify";
+import { saveUser } from "../../../Utilit/Utilite";
 
 const Login = () => {
   const {signInUser,googleSignUp} = userAuth()
@@ -26,7 +27,8 @@ const Login = () => {
   }
   const handleSignInGoogle =async () =>{
     try{
-      await googleSignUp()
+     const data = await googleSignUp()
+     await saveUser(data?.user)
       toast.success('Google SignIn User')
       navigate('/')
     }catch(err){

@@ -21,7 +21,10 @@ const Order = ({order}) => {
         </td>
         <td>{paymentMethod}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">{status}</button>
+          <select value={status} name="" id="">
+            <option value="Pending">Pending</option>
+            <option  value="Done">Done</option>
+          </select>
         </th>
       </tr>
     );

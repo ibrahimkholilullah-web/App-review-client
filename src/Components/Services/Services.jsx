@@ -2,12 +2,13 @@ import React from 'react';
 import servic1 from "../../assets/icons/Group 1372.png"
 import servic2 from "../../assets/icons/Group 1373.png"
 import servic3 from "../../assets/icons/Group 1374.png"
+import { Link } from 'react-router-dom';
 const Services = () => {
   return (
     <div className="px-6 py-12 bg-white my-16">
       <h2 className="text-4xl font-semibold text-center  text-[#F63E7B] mb-10"><span className='text-[#111430] font-bold'>Our Awesome</span> Services</h2>
       <div className="grid container mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="flex flex-col items-center  p-8 rounded-lg shadow-md">
+        <div className="flex flex-col items-center  p-8 rounded-lg hover:shadow-2xl">
           <div className=" p-4 rounded-full mb-4">
             <img className='w-20' src={servic3} alt="" />
           </div>
@@ -18,7 +19,7 @@ const Services = () => {
           <p className="text-xl font-bold text-[#F63E7B] mb-4">$199</p>
           
         </div>
-        <div className="flex flex-col items-center  p-8 rounded-lg shadow-md">
+        <div className="flex flex-col items-center  p-8 rounded-lg hover:shadow-2xl">
           <div className=" p-4 rounded-full mb-4">
           <img className='w-20' src={servic1} alt="" />
           </div>
@@ -29,7 +30,7 @@ const Services = () => {
           <p className="text-xl font-bold text-[#F63E7B] mb-4">$99</p>
           
         </div>
-        <div className="flex flex-col items-center  p-8 rounded-lg shadow-md">
+        <div className="flex flex-col items-center  p-8 rounded-lg hover:shadow-2xl">
           <div className=" p-4 rounded-full mb-4">
           <img className='w-20' src={servic2} alt="" />          
           </div>
@@ -42,9 +43,9 @@ const Services = () => {
         </div>
        
       </div>
-      <button className="bg-[#F63E7B] text-white btn flex mx-auto mt-16 py-2 px-4  hover:bg-pink-700">
+      <Link to='/services' className="bg-[#F63E7B] w-44 text-white btn flex mx-auto mt-16 py-2 px-4  hover:bg-pink-700">
             Explore more
-          </button>
+          </Link>
     </div>
   );
 };

@@ -8,6 +8,13 @@ import Book from "../Components/User/UserInfo/Book";
 import Bookinglist from "../Components/User/UserInfo/Bookinglist";
 import ReviewForm from "../Components/User/UserInfo/ReviewForm ";
 import OrderList from "../Components/User/Dashboard/Admin/OrderList";
+import ContactUs from "../Components/Home/Navber/Path/ContactUs";
+import AllServices from "../Components/Home/Navber/Path/AllServices";
+import OurTeam from "../Components/Team/OurTeam";
+import AddServiceForm from "../Components/User/Dashboard/Admin/AddServices";
+import MakeAdmin from "../Components/User/Dashboard/Admin/MakeAdmin";
+import ManageServices from "../Components/User/Dashboard/Admin/ManageServices";
+import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +25,22 @@ export const router = createBrowserRouter([
           path:'/',
           element:<Home></Home>
         },
-       
+        {
+          path:'/contact',
+          element: <ContactUs></ContactUs>
+        },
+        {
+          path: "/services",
+          element: <AllServices></AllServices>
+        },
+        {
+          path:'/ourTeam',
+          element: <OurTeam></OurTeam>
+        },
+        {
+          path:'/updateProfile',
+          element: <UpdateProfile></UpdateProfile>
+        },
       ]
     },
     {
@@ -29,6 +51,7 @@ export const router = createBrowserRouter([
       path:'/register',
       element: <SignUp></SignUp>
     },
+   
     {
       path:'/dashboard',
       element: <Dashboard></Dashboard>,
@@ -48,6 +71,18 @@ export const router = createBrowserRouter([
         {
           path:'orderList',
           element: <OrderList></OrderList>
+        },
+        {
+          path: "addservices",
+          element: <AddServiceForm></AddServiceForm>
+        },
+        {
+          path:'makeadmin',
+          element: <MakeAdmin></MakeAdmin>
+        }, 
+        {
+          path:'manageservice',
+          element: <ManageServices></ManageServices>
         }
       ]
     }
