@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../../assets/icons/logo.png";
 import google from "../../../../assets/icons/Group 573.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import userAuth from "../../../AuthProvider/userAuth";
 import { toast } from "react-toastify";
 import { saveUser } from "../../../Utilit/Utilite";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { VscLoading } from "react-icons/vsc";
 
 const Login = () => {
-  const location = useLocation()
-  const {signInUser,googleSignUp} = userAuth()
-  const navigate = useNavigate()
-  const handleSignInUser = async(e) =>{
-    e.preventDefault()
-   const form = e.target
-   const email = form.email.value;
-   const password = form.password.value;
-   const signInData = {
-    email,password
-   }
-   console.log(signInData)
-   try{
-    await signInUser(email, password)
-    toast.success('Sign In User')
-    const redirectPath = location?.state ? location?.state : "/"
-    navigate(redirectPath)
-   }catch(err){
-    toast.error(err.message)
-   }
-  }
+  const location = useLocation();
+  const { signInUser, googleSignUp, loading } = userAuth();
+  const [passwordIcon, setPasswordIcon] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignInUser = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      await signInUser(email, password);
+      
+      // Redirect to the previous page or home page
+      const redirectPath = location.state?.from?.pathname || "/";
+      navigate(redirectPath);
+      toast.success("Sign In Successful");
+
+    } catch (err) {
+      if (err.code === "auth/user-not-found") {
+        toast.error("User not found. Please check your email.");
+      } else if (err.code === "auth/wrong-password") {
+        toast.error("Incorrect password. Please try again.");
+      } else {
+        toast.error(err.message || "Failed to sign in");
+      }
+    }
+  };
   const handleSignInGoogle =async () =>{
     try{
      const data = await googleSignUp()
      await saveUser(data?.user)
       toast.success('Google SignIn User')
-      const redirectPath = location?.state ? location?.state : "/"
+      const redirectPath = location?.state?.from?.pathname || "/";
       navigate(redirectPath)
     }catch(err){
       toast.error(err.message)
@@ -78,17 +89,20 @@ const Login = () => {
           </div>
 
           {/* Password Input */}
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="block text-black text-sm mb-1">
               Password
             </label>
             <input
-              type="password"
+               type={passwordIcon ? 'text' : 'password'}
               name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 rounded-full border-[#F63E7B] border focus:outline-none focus:ring focus:ring-[#F63E7B]"
               required
             />
+             <button className=' absolute top-9 right-3 ' onClick={() => setPassswordIcon(!passwordIcon)} type='button'>
+              {passwordIcon ? <FaEye /> : <FaEyeSlash />}
+              </button>
             <div className="text-right mt-2">
               <a
                 href="#"
@@ -102,7 +116,8 @@ const Login = () => {
           {/* Submit Button */}
           <div className="form-control mt-4">
             <button className="w-full bg-white text-black border-2 rounded-full py-2  hover:bg-[#F63E7B] hover:text-white transition">
-              Login
+              {loading ? < VscLoading className="animate-spin mx-auto" />
+              :"Login"}
             </button>
           </div>
         </form>

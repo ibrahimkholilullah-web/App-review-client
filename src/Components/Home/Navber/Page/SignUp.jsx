@@ -6,9 +6,10 @@ import userAuth from '../../../AuthProvider/userAuth';
 import { toast } from 'react-toastify';
 import Navber from '../Navber';
 import { saveUser } from '../../../Utilit/Utilite';
+import { VscLoading } from 'react-icons/vsc';
 const SignUp = () => {
     const [passwordIcon, setPassswordIcon] = useState(false)
-    const {createUser,googleSignUp,updateSignleUser} = userAuth()
+    const {createUser,googleSignUp,updateSignleUser,loading} = userAuth()
     const navigate = useNavigate()
     const handleCreateAccount = async (e) =>{
         e.preventDefault()
@@ -93,7 +94,8 @@ const SignUp = () => {
             type="submit"
             className="w-full bg-white text-black border border-[#F63E7B] py-2 rounded-lg hover:bg-pink-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
           >
-            Create an account
+          {loading ? < VscLoading className="animate-spin mx-auto" />
+              :" Create an account"}
           </button>
         </form>
         <p className="text-center text-sm mt-4">
