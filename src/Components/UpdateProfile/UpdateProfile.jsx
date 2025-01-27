@@ -9,7 +9,7 @@ const UpdateProfile = () => {
             <div className="card bg-[#FFF8F5] hover:shadow-2xl pt-10">
               <figure>
                 <img
-                  className=' rounded-full w-44 h-44 '
+                  className=' rounded-full w-24 p-2 border border-[#F6407D] h-24 '
                   src={user?.photoURL}
                   alt="Shoes" />
               </figure>

@@ -15,11 +15,14 @@ import AddServiceForm from "../Components/User/Dashboard/Admin/AddServices";
 import MakeAdmin from "../Components/User/Dashboard/Admin/MakeAdmin";
 import ManageServices from "../Components/User/Dashboard/Admin/ManageServices";
 import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
+import PrivatedRouter from "../Components/Privatedrout/PrivatedRouter";
+import Error from "../Components/Error/Error";
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement: <Error></Error>,
       children:[
         {
           path:'/',
@@ -35,7 +38,7 @@ export const router = createBrowserRouter([
         },
         {
           path:'/ourTeam',
-          element: <OurTeam></OurTeam>
+          element: <PrivatedRouter><OurTeam></OurTeam></PrivatedRouter>
         },
         {
           path:'/updateProfile',
@@ -55,34 +58,35 @@ export const router = createBrowserRouter([
     {
       path:'/dashboard',
       element: <Dashboard></Dashboard>,
+      errorElement: <Error></Error>,
       children: [
         {
           path:'book',
-          element:<Book></Book>
+          element:<PrivatedRouter><Book></Book></PrivatedRouter>
         },
         {
           path:'bookingList',
-          element: <Bookinglist></Bookinglist>
+          element: <PrivatedRouter><Bookinglist></Bookinglist></PrivatedRouter>
         },
         {
           path:'reviewForm',
-          element: <ReviewForm></ReviewForm>
+          element:<PrivatedRouter> <ReviewForm></ReviewForm></PrivatedRouter>
         },
         {
           path:'orderList',
-          element: <OrderList></OrderList>
+          element: <PrivatedRouter><OrderList></OrderList></PrivatedRouter>
         },
         {
           path: "addservices",
-          element: <AddServiceForm></AddServiceForm>
+          element: <PrivatedRouter><AddServiceForm></AddServiceForm></PrivatedRouter>
         },
         {
           path:'makeadmin',
-          element: <MakeAdmin></MakeAdmin>
+          element: <PrivatedRouter><MakeAdmin></MakeAdmin></PrivatedRouter>
         }, 
         {
           path:'manageservice',
-          element: <ManageServices></ManageServices>
+          element: <PrivatedRouter><ManageServices></ManageServices></PrivatedRouter>
         }
       ]
     }

@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../../../../assets/icons/logo.png";
 import google from "../../../../assets/icons/Group 573.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import userAuth from "../../../AuthProvider/userAuth";
 import { toast } from "react-toastify";
 import { saveUser } from "../../../Utilit/Utilite";
 
 const Login = () => {
+  const location = useLocation()
   const {signInUser,googleSignUp} = userAuth()
   const navigate = useNavigate()
   const handleSignInUser = async(e) =>{
@@ -21,6 +22,8 @@ const Login = () => {
    try{
     await signInUser(email, password)
     toast.success('Sign In User')
+    const redirectPath = location?.state ? location?.state : "/"
+    navigate(redirectPath)
    }catch(err){
     toast.error(err.message)
    }
@@ -30,7 +33,8 @@ const Login = () => {
      const data = await googleSignUp()
      await saveUser(data?.user)
       toast.success('Google SignIn User')
-      navigate('/')
+      const redirectPath = location?.state ? location?.state : "/"
+      navigate(redirectPath)
     }catch(err){
       toast.error(err.message)
     }
