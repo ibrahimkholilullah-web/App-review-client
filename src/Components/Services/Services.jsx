@@ -5,7 +5,7 @@ import servic3 from "../../assets/icons/Group 1374.png"
 import { Link } from 'react-router-dom';
 const Services = () => {
   return (
-    <div className="px-6 py-12 bg-white my-16">
+    <div className="h-[100vh] px-6 py-12 bg-white my-16">
       <h2 className="text-4xl font-semibold text-center  text-[#F63E7B] mb-10"><span className='text-[#111430] font-bold'>Our Awesome</span> Services</h2>
       <div className="grid container mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="flex flex-col items-center  p-8 rounded-lg hover:shadow-2xl">
